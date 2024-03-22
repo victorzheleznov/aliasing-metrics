@@ -113,9 +113,13 @@ function [sig, sig_lim, alias] = bandlimit_signal(sig, fs, f0, IS_SYM, varargin)
         plot(sig, 'color', "#e6194b");
         plot(sig_lim, 'color', "#3cb44b");
         plot(alias, 'color', "#4363d8");
-        legend({'Input signal', 'Bandlimited signal', 'Alias signal'});
-        title(sprintf("Input signal at $f_0 = %.2f$ Hz", f0));
         xlim([-100, length(sig)+100]);
-        latexify(fig_sig);
+        xlabel('Samples [n]', 'Interpreter', 'latex');
+        ylabel('Amplitude', 'Interpreter', 'latex');
+        legend({'Input signal', 'Bandlimited signal', 'Alias signal'}, 'Interpreter', 'latex');
+        title(sprintf("Input signal at $f_0 = %.2f$ Hz", f0), 'Interpreter', 'latex');
+        ax_spec = fig_sig.CurrentAxes;
+        set(ax_spec.XAxis, 'TickLabelInterpreter', 'latex');
+        set(ax_spec.YAxis, 'TickLabelInterpreter', 'latex');
     end
 end
